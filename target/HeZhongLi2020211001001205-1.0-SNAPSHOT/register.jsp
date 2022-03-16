@@ -14,6 +14,10 @@
 <p>New User Registration!</p>
 <form name="f" method="post" action="register">
     <p>
+        <input name="id" type="text" style="width: 200px;height: 30px;
+    background-color: antiquewhite" placeholder="id">
+    </p>
+    <p>
         <input name="username" type="text" style="width: 200px;height: 30px;
     background-color: antiquewhite" placeholder="Username">
     </p>
