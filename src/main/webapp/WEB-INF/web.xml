@@ -82,6 +82,7 @@
         <welcome-file>register.jsp</welcome-file>
     </welcome-file-list>-->
 
+
     <!--4 context param-->
     <context-param>
         <param-name>driver</param-name>
@@ -99,5 +100,10 @@
         <param-name>password</param-name>
         <param-value>123456</param-value>
     </context-param>
+
+
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+    </welcome-file-list>
 
 </web-app>
