@@ -5,7 +5,13 @@
   Time: 21:40
   To change this template use File | Settings | File Templates.
 --%>
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
+<h1>Login</h1>
+<%
+    if (!(request.getAttribute("message") == null)) {
+        out.println(request.getAttribute("message"));
+    }
+%>
 <form method="post" action="login">
     <p>
         <input name="username" type="text" style="width: 200px;height: 30px;
@@ -20,4 +26,4 @@
                value="login">
     </p>
 </form>
-<%@include file="footer.jsp"%>
+<%@include file="footer.jsp" %>

@@ -3,10 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.hezhongli.week5.LoginServlet</servlet-class>
-    </servlet>
     <!--<servlet>
         <servlet-name>ZhongLI</servlet-name>
         <servlet-class>com.example.hezhongli2020211001001205.HelloServlet</servlet-class>
@@ -82,9 +78,9 @@
     </servlet-mapping>-->
 
 
-    <welcome-file-list>
+  <!--  <welcome-file-list>
         <welcome-file>register.jsp</welcome-file>
-    </welcome-file-list>
+    </welcome-file-list>-->
 
     <!--4 context param-->
     <context-param>

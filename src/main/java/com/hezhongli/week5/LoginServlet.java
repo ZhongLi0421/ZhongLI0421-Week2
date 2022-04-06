@@ -15,7 +15,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        super.init();
+        /*super.init();
         ServletContext context=getServletContext();
         String driver= context.getInitParameter("driver");
         String url= context.getInitParameter("url");
@@ -27,10 +27,11 @@ public class LoginServlet extends HttpServlet {
             con = DriverManager.getConnection(url, username, password);
             System.out.println("连接成功！");
             System.out.println("Connection-->in JDBCServlet" + con);//测试
-            //can do one times
+
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        }*/
+        con= (Connection) getServletContext().getAttribute("con");
     }
 
     @Override
@@ -53,10 +54,22 @@ public class LoginServlet extends HttpServlet {
                     .executeQuery("SELECT * from usertable where username='" +username +"' and password='"+password +"'");
 
             if(rs.next()){
-                out.println("Login Success!!!");
-                out.println("Welcome"+username);
+//                out.println("Login Success!!!");
+//                out.println("Welcome"+username);
+                //get form
+                request.setAttribute("id",rs.getString("id"));
+                request.setAttribute("username",rs.getString("username"));
+                request.setAttribute("password",rs.getString("password"));
+                request.setAttribute("Email",rs.getString("Email"));
+                request.setAttribute("gander",rs.getString("gander"));
+                request.setAttribute("birthdate",rs.getString("birthdate"));
+                //forward to userInfo.jsp
+                request.getRequestDispatcher("userInfo.jsp").forward(request,response);
+
             }else {
-                out.println("username and password error!!!");
+//                out.println("username and password error!!!");
+                request.setAttribute("message","username and password error!!!");
+                request.getRequestDispatcher("login.jsp").forward(request,response);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
