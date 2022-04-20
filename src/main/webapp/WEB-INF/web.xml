@@ -102,6 +102,17 @@
     </context-param>
 
 
+    <!--Lab1-->
+    <servlet>
+        <servlet-name>LifeCycleServlet</servlet-name>
+        <servlet-class>com.hezhongli.Lab.LifeCycleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LifeCycleServlet</servlet-name>
+        <url-pattern>/life</url-pattern>
+    </servlet-mapping>
+
+
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
