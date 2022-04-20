@@ -111,6 +111,23 @@
         <servlet-name>LifeCycleServlet</servlet-name>
         <url-pattern>/life</url-pattern>
     </servlet-mapping>
+    <!--Lab2-->
+    <filter>
+        <filter-name>HeZhongLIFilter</filter-name>
+        <filter-class>com.hezhongli.lab2.HeZhongLiFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HeZhongLIFilter</filter-name>
+        <url-pattern>/lab2/welcome.jsp</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.hezhongli.lab2.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/lab2/welcome.jsp</url-pattern>
+    </filter-mapping>
 
 
     <welcome-file-list>
