@@ -105,5 +105,36 @@
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
+    
+
+    <!--chain filter-->
+    <!--   3   -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.hezhongli.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <!--   1   -->
+    <filter>
+        <filter-name>HelloServlet</filter-name>
+        <filter-class>com.hezhongli.filter.HelloFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HelloFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <!--   2   -->
+    <filter>
+        <filter-name>LoggerFilter</filter-name>
+        <filter-class>com.hezhongli.filter.LoggerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoggerFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+
 
 </web-app>
