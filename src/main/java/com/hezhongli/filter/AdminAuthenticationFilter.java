@@ -36,6 +36,7 @@ public class AdminAuthenticationFilter implements Filter {
         }else {
             System.out.println(httpRequest.getContextPath());
             httpResponse.sendRedirect(httpRequest.getContextPath()+"/admin/login");//go to login
+//          request.getRequestDispatcher("/admin/login").forward(request, response);
         }
     }
 

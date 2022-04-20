@@ -4,7 +4,6 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.*;
 
 @WebServlet(urlPatterns = {"/register"}, loadOnStartup = 1)
@@ -34,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        request.getRequestDispatcher("WEB-INF/views/register.jsp").forward(request,response);
     }
 
     @Override
@@ -42,8 +41,8 @@ public class RegisterServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String Email = request.getParameter("Email");
-        String gander = request.getParameter("gander");
+        String email = request.getParameter("email");
+        String gender = request.getParameter("gender");
         String birthdate = request.getParameter("birthdate");
 
         try {
@@ -51,9 +50,9 @@ public class RegisterServlet extends HttpServlet {
             Statement stmt = con.createStatement();
             // 获取插入结果集
             int rs = stmt
-                    .executeUpdate("INSERT INTO usertable(username,password,Email,gander,birthdate)" +
-                            " Values('" + username + "'" + "," + "'" + password + "'" + "," + "'" + Email + "'" + ","
-                            + "'" + gander + "'" + "," + "'" + birthdate + "')");
+                    .executeUpdate("INSERT INTO usertable(username,password,email,gender,birthdate)" +
+                            " Values('" + username + "'" + "," + "'" + password + "'" + "," + "'" + email + "'" + ","
+                            + "'" + gender + "'" + "," + "'" + birthdate + "')");
             if (rs == 1) {
                 System.out.println("增加成功!");
             } else {
@@ -88,7 +87,8 @@ public class RegisterServlet extends HttpServlet {
 //
 //            System.out.println("i am in RegisterServlet-->doPost()-->after forward");
 
-            response.sendRedirect("login.jsp");
+//            response.sendRedirect("userList.jsp");
+            response.sendRedirect("login");
         } catch (SQLException e) {
             e.printStackTrace();
         }

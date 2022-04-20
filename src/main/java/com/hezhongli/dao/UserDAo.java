@@ -16,7 +16,7 @@ public class UserDAo implements IUserDao {
         //insert into usertable
         Statement stmt = con.createStatement();
         int rs = stmt
-                .executeUpdate("INSERT INTO usertable(username,password,Email,gander,birthdate)" +
+                .executeUpdate("INSERT INTO usertable(username,password,email,gander,birthdate)" +
                         " Values('" + user.getUsername() + "'" + "," + "'" + user.getPassword() + "'" + "," + "'" + user.getEmail() + "'" + ","
                         + "'" + user.getGander() + "'" + "," + "'" + user.getBirthdate() + "')");
         if (rs == 1) {
@@ -42,9 +42,9 @@ public class UserDAo implements IUserDao {
     @Override
     public int updateUser(Connection con, User user) throws SQLException {
         Statement stmt = con.createStatement();
-        String s="UPDATE usertable set password='" + user.getPassword() + "', email='" + user.getEmail() + "', gander='" + user.getGander() + "', birthdate='" + user.getBirthdate() + "'where id=" + user.getId();
+        String s="UPDATE usertable set password='" + user.getPassword() + "', email='" + user.getEmail() + "', gender='" + user.getGander() + "', birthdate='" + user.getBirthdate() + "'where id=" + user.getId();
         System.out.println(s);
-        int rs = stmt.executeUpdate("UPDATE usertable set password='" + user.getPassword() + "', email='" + user.getEmail() + "', gander='" + user.getGander() + "', birthdate='" + user.getBirthdate() + "'where id=" + user.getId());
+        int rs = stmt.executeUpdate("UPDATE usertable set password='" + user.getPassword() + "', email='" + user.getEmail() + "', gender='" + user.getGander() + "', birthdate='" + user.getBirthdate() + "'where id=" + user.getId());
 
         if (rs == 1) {
             System.out.println("修改成功！");
@@ -65,8 +65,8 @@ public class UserDAo implements IUserDao {
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
-            user.setEmail(rs.getString("Email"));
-            user.setGander(rs.getString("gander"));
+            user.setEmail(rs.getString("email"));
+            user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
         }
         return user;
@@ -83,8 +83,8 @@ public class UserDAo implements IUserDao {
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
-            user.setEmail(rs.getString("Email"));
-            user.setGander(rs.getString("gander"));
+            user.setEmail(rs.getString("email"));
+            user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
         }
         return user;
@@ -101,8 +101,8 @@ public class UserDAo implements IUserDao {
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
-            user.setEmail(rs.getString("Email"));
-            user.setGander(rs.getString("gander"));
+            user.setEmail(rs.getString("email"));
+            user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
         }
         u.add(user);
@@ -120,8 +120,8 @@ public class UserDAo implements IUserDao {
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
-            user.setEmail(rs.getString("Email"));
-            user.setGander(rs.getString("gander"));
+            user.setEmail(rs.getString("email"));
+            user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
         }
         u.add(user);
@@ -139,8 +139,8 @@ public class UserDAo implements IUserDao {
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
-            user.setEmail(rs.getString("Email"));
-            user.setGander(rs.getString("gander"));
+            user.setEmail(rs.getString("email"));
+            user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
         }
         u.add(user);
@@ -158,8 +158,8 @@ public class UserDAo implements IUserDao {
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
-            user.setEmail(rs.getString("Email"));
-            user.setGander(rs.getString("gander"));
+            user.setEmail(rs.getString("email"));
+            user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
             u.add(user);
         }
@@ -177,8 +177,8 @@ public class UserDAo implements IUserDao {
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
-            user.setEmail(rs.getString("Email"));
-            user.setGander(rs.getString("gander"));
+            user.setEmail(rs.getString("email"));
+            user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
             u.add(user);
         }
@@ -196,8 +196,8 @@ public class UserDAo implements IUserDao {
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
-            user.setEmail(rs.getString("Email"));
-            user.setGander(rs.getString("gander"));
+            user.setEmail(rs.getString("email"));
+            user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
             u.add(user);
         }

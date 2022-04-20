@@ -88,13 +88,12 @@ public class LoginServlet extends HttpServlet {
 //                c.setMaxAge(10*60);
 //                response.addCookie(c);
 
-                String rememberMe = request.getParameter("rememberMe");
+                String rememberMe = request.getParameter("remember");
                 if (rememberMe != null && rememberMe.equals("1")) {
                     Cookie usernameCooike = new Cookie("cUsername", user.getUsername());
                     Cookie passwordCooike = new Cookie("cPassword", user.getPassword());
                     Cookie rememberCooike = new Cookie("cRememberMe", rememberMe);
 
-                    System.out.println(user.getPassword());
 
                     usernameCooike.setMaxAge(5);
                     passwordCooike.setMaxAge(5);
@@ -108,7 +107,7 @@ public class LoginServlet extends HttpServlet {
                 }
 
                 HttpSession session = request.getSession();
-                System.out.println("session id--" + session.getId());
+//                System.out.println("session id--" + session.getId());
 //                session.setMaxInactiveInterval(10);//tomcat kill session when not come in 10 second later
 
                 session.setAttribute("user", user);
