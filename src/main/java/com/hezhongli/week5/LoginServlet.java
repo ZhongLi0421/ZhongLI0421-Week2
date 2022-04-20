@@ -48,11 +48,11 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        try {
+        /*try {
             PrintWriter out = response.getWriter();
             // 创建Statment对象
             Statement stmt = con.createStatement();
-            // 获取插入结果集
+
             ResultSet rs = stmt
                     .executeQuery("SELECT * from usertable where username='" + username + "' and password='" + password + "'");
 
@@ -72,19 +72,46 @@ public class LoginServlet extends HttpServlet {
             } else {
 //                out.println("username and password error!!!");
                 request.setAttribute("message", "username and password error!!!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request, response);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
+*/
         //use dao and model
         UserDAo userDAo = new UserDAo();
         try {
             User user = userDAo.findByUsernamePassword(con, username, password);
             //forward to jsp
             if (user != null) {
-                request.setAttribute("user",user);
+//                Cookie c =new Cookie("sessionid",""+user.getId());
+//                c.setMaxAge(10*60);
+//                response.addCookie(c);
+
+                String rememberMe = request.getParameter("rememberMe");
+                if (rememberMe != null && rememberMe.equals("1")) {
+                    Cookie usernameCooike = new Cookie("cUsername", user.getUsername());
+                    Cookie passwordCooike = new Cookie("cPassword", user.getPassword());
+                    Cookie rememberCooike = new Cookie("cRememberMe", rememberMe);
+
+                    System.out.println(user.getPassword());
+
+                    usernameCooike.setMaxAge(5);
+                    passwordCooike.setMaxAge(5);
+                    rememberCooike.setMaxAge(5);
+
+
+                    response.addCookie(usernameCooike);
+                    response.addCookie(passwordCooike);
+                    response.addCookie(rememberCooike);
+
+                }
+
+                HttpSession session = request.getSession();
+                System.out.println("session id--" + session.getId());
+//                session.setMaxInactiveInterval(10);//tomcat kill session when not come in 10 second later
+
+                session.setAttribute("user", user);
                 request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request, response);
             } else {
                 request.setAttribute("message", "username and password error!!!");
@@ -93,6 +120,6 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+
 }

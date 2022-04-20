@@ -42,9 +42,12 @@ public class UserDAo implements IUserDao {
     @Override
     public int updateUser(Connection con, User user) throws SQLException {
         Statement stmt = con.createStatement();
-        int rs = stmt.executeUpdate("UPDATE usertable set password=" + user.getPassword() + "where id=" + user.getId());
+        String s="UPDATE usertable set password='" + user.getPassword() + "', email='" + user.getEmail() + "', gander='" + user.getGander() + "', birthdate='" + user.getBirthdate() + "'where id=" + user.getId();
+        System.out.println(s);
+        int rs = stmt.executeUpdate("UPDATE usertable set password='" + user.getPassword() + "', email='" + user.getEmail() + "', gander='" + user.getGander() + "', birthdate='" + user.getBirthdate() + "'where id=" + user.getId());
+
         if (rs == 1) {
-            System.out.println("修改密码成功！");
+            System.out.println("修改成功！");
         } else {
             System.out.println("修改失败！！！");
         }
