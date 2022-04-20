@@ -51,19 +51,18 @@ public class ProductDao implements IProductDao {
 
     @Override
     public Product findById(Integer productId, Connection con) {
-        Product product=null;
+        Product product=new Product();
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt
-                    .executeQuery("SELECT * from Product where id=" + productId);
-            if(rs.next()){
+                    .executeQuery("SELECT * from Product where ProductId=" + productId);
+            while (rs.next()){
                 product.setProductId(rs.getInt("ProductId"));
                 product.setProductName(rs.getString("ProductName"));
                 product.setProductDescription(rs.getString("ProductDescription"));
-                product.setPrice(rs.getInt("price"));
-                product.setPicture(rs.getAsciiStream("picture"));
+                product.setPrice(rs.getDouble("price"));
+//                product.setPicture(rs.getAsciiStream("picture"));
                 product.setCategoryId(rs.getInt("CategoryId"));
-                return product;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,8 +77,8 @@ public class ProductDao implements IProductDao {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt
                     .executeQuery("SELECT * from Product where CategoryId='" + categoryId + "'");
-            Product product =new Product();
-            if(rs.next()){
+            while (rs.next()){
+                Product product =new Product();
                 product.setProductId(rs.getInt("ProductId"));
                 product.setProductName(rs.getString("ProductName"));
                 product.setProductDescription(rs.getString("ProductDescription"));
@@ -88,11 +87,10 @@ public class ProductDao implements IProductDao {
                 product.setCategoryId(rs.getInt("CategoryId"));
                 products.add(product);
             }
-            return products;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return products;
     }
 
     @Override
@@ -102,8 +100,8 @@ public class ProductDao implements IProductDao {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt
                     .executeQuery("SELECT * from Product where price>='" + minPrice + "'" + "and price<='"+maxPrice+"'");
-            Product product =new Product();
-            if(rs.next()){
+            while (rs.next()){
+                Product product =new Product();
                 product.setProductId(rs.getInt("ProductId"));
                 product.setProductName(rs.getString("ProductName"));
                 product.setProductDescription(rs.getString("ProductDescription"));
@@ -112,11 +110,10 @@ public class ProductDao implements IProductDao {
                 product.setCategoryId(rs.getInt("CategoryId"));
                 products.add(product);
             }
-            return products;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return products;
     }
 
     @Override
@@ -126,21 +123,20 @@ public class ProductDao implements IProductDao {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt
                     .executeQuery("SELECT * from Product ");
-            Product product =new Product();
-            if(rs.next()){
+            while(rs.next()){
+                Product product =new Product();
                 product.setProductId(rs.getInt("ProductId"));
                 product.setProductName(rs.getString("ProductName"));
                 product.setProductDescription(rs.getString("ProductDescription"));
-                product.setPrice(rs.getInt("price"));
+                product.setPrice(rs.getDouble("price"));
                 product.setPicture(rs.getAsciiStream("picture"));
                 product.setCategoryId(rs.getInt("CategoryId"));
                 products.add(product);
             }
-            return products;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return products;
     }
 
     @Override
@@ -150,8 +146,8 @@ public class ProductDao implements IProductDao {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt
                     .executeQuery("SELECT * from Product where ProductName='" + productName + "'");
-            Product product =new Product();
-            if(rs.next()){
+            while (rs.next()){
+                Product product =new Product();
                 product.setProductId(rs.getInt("ProductId"));
                 product.setProductName(rs.getString("ProductName"));
                 product.setProductDescription(rs.getString("ProductDescription"));
@@ -160,11 +156,10 @@ public class ProductDao implements IProductDao {
                 product.setCategoryId(rs.getInt("CategoryId"));
                 products.add(product);
             }
-            return products;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return products;
     }
 
     @Override
@@ -179,10 +174,22 @@ public class ProductDao implements IProductDao {
                 product.setPicture(rs.getAsciiStream("picture"));
                 products.add(product);
             }
-            return products;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return products;
+    }
+
+    public byte[] getPictureById(Integer productId,Connection con)throws SQLException{
+        byte[] imgByte=null;
+        String sql="select picture from product where productId=?";
+        PreparedStatement pt =con.prepareStatement(sql);
+        pt.setInt(1,productId);
+        ResultSet rs=pt.executeQuery();
+        while (rs.next()){
+            Blob blob=rs.getBlob("picture");
+            imgByte=blob.getBytes(1,(int)blob.length());
+        }
+        return imgByte;
     }
 }
