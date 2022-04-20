@@ -33,17 +33,15 @@ public class UserDAo implements IUserDao {
         int rs = stmt.executeUpdate("DELETE FROM usertable where id =" + user.getId());
         if (rs == 1) {
             System.out.println("删除成功!");
-        } else {
-            System.out.println("删除失败!!!");
+            return rs;
         }
-        return rs;
+        System.out.println("删除失败!!!");
+        return 0;
     }
 
     @Override
     public int updateUser(Connection con, User user) throws SQLException {
         Statement stmt = con.createStatement();
-        String s="UPDATE usertable set password='" + user.getPassword() + "', email='" + user.getEmail() + "', gender='" + user.getGander() + "', birthdate='" + user.getBirthdate() + "'where id=" + user.getId();
-        System.out.println(s);
         int rs = stmt.executeUpdate("UPDATE usertable set password='" + user.getPassword() + "', email='" + user.getEmail() + "', gender='" + user.getGander() + "', birthdate='" + user.getBirthdate() + "'where id=" + user.getId());
 
         if (rs == 1) {
@@ -61,7 +59,7 @@ public class UserDAo implements IUserDao {
                 .executeQuery("SELECT * from usertable where id=" + id);
         User user = null;
         if (rs.next()) {
-            user = new User();
+//            user = new User();
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
@@ -104,8 +102,8 @@ public class UserDAo implements IUserDao {
             user.setEmail(rs.getString("email"));
             user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
+            u.add(user);
         }
-        u.add(user);
         return u;
     }
 
@@ -123,8 +121,8 @@ public class UserDAo implements IUserDao {
             user.setEmail(rs.getString("email"));
             user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
+            u.add(user);
         }
-        u.add(user);
         return u;
     }
 
@@ -142,8 +140,8 @@ public class UserDAo implements IUserDao {
             user.setEmail(rs.getString("email"));
             user.setGander(rs.getString("gender"));
             user.setBirthdate(rs.getDate("birthdate"));
+            u.add(user);
         }
-        u.add(user);
         return u;
     }
 
