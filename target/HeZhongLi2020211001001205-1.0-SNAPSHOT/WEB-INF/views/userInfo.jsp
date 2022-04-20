@@ -35,8 +35,8 @@
         </td>
     </tr>
     <tr>
-        <td>Gander:</td>
-        <td><%=u.getGander()%>
+        <td>Gender:</td>
+        <td><%=u.getGender()%>
         </td>
     </tr>
     <tr>

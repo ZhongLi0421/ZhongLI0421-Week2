@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserDAo implements IUserDao {
+public class UserDao implements IUserDao {
     @Override
     public boolean saveUser(Connection con, User user) throws SQLException {
         //insert into usertable
@@ -18,7 +18,7 @@ public class UserDAo implements IUserDao {
         int rs = stmt
                 .executeUpdate("INSERT INTO usertable(username,password,email,gander,birthdate)" +
                         " Values('" + user.getUsername() + "'" + "," + "'" + user.getPassword() + "'" + "," + "'" + user.getEmail() + "'" + ","
-                        + "'" + user.getGander() + "'" + "," + "'" + user.getBirthdate() + "')");
+                        + "'" + user.getGender() + "'" + "," + "'" + user.getBirthdate() + "')");
         if (rs == 1) {
             System.out.println("增加成功!");
         } else {
@@ -42,7 +42,7 @@ public class UserDAo implements IUserDao {
     @Override
     public int updateUser(Connection con, User user) throws SQLException {
         Statement stmt = con.createStatement();
-        int rs = stmt.executeUpdate("UPDATE usertable set password='" + user.getPassword() + "', email='" + user.getEmail() + "', gender='" + user.getGander() + "', birthdate='" + user.getBirthdate() + "'where id=" + user.getId());
+        int rs = stmt.executeUpdate("UPDATE usertable set password='" + user.getPassword() + "', email='" + user.getEmail() + "', gender='" + user.getGender() + "', birthdate='" + user.getBirthdate() + "'where id=" + user.getId());
 
         if (rs == 1) {
             System.out.println("修改成功！");
@@ -59,7 +59,7 @@ public class UserDAo implements IUserDao {
                 .executeQuery("SELECT * from usertable where id=" + id);
         User user = null;
         if (rs.next()) {
-//            user = new User();
+            user = new User();
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));

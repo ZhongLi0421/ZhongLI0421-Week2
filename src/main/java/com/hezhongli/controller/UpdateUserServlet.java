@@ -1,6 +1,6 @@
 package com.hezhongli.controller;
 
-import com.hezhongli.dao.UserDAo;
+import com.hezhongli.dao.UserDao;
 import com.hezhongli.model.User;
 
 import javax.servlet.*;
@@ -63,7 +63,7 @@ public class UpdateUserServlet extends HttpServlet {
         if (gander != null) {
             user.setGander(gander);
         } else {
-            user.setGander(u.getGander());
+            user.setGander(u.getGender());
         }
 
 
@@ -85,7 +85,7 @@ public class UpdateUserServlet extends HttpServlet {
         session1.setAttribute("user", user);
 
         //creat UserDao
-        UserDAo userDAo = new UserDAo();
+        UserDao userDAo = new UserDao();
 
         Connection con = null;
         con = (Connection) getServletContext().getAttribute("con");
@@ -96,7 +96,7 @@ public class UpdateUserServlet extends HttpServlet {
         }
 
         //forward to userinfo.jsp
-        request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request, response);
+        request.getRequestDispatcher("accountDetails").forward(request, response);
 
 
     }

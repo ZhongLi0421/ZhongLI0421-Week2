@@ -7,7 +7,7 @@ public class User {
     private String username;
     private String password;
     private String Email;
-    private String gander;
+    private String gender;
     private java.util.Date birthdate;
 
     //constructor
@@ -21,7 +21,7 @@ public class User {
         this.username = username;
         this.password = password;
         Email = email;
-        this.gander = gander;
+        this.gender = gander;
         this.birthdate = birthdate;
     }
 
@@ -59,12 +59,12 @@ public class User {
         Email = email;
     }
 
-    public String getGander() {
-        return gander;
+    public String getGender() {
+        return gender;
     }
 
     public void setGander(String gander) {
-        this.gander = gander;
+        this.gender = gander;
     }
 
     public Date getBirthdate() {
@@ -84,7 +84,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", Email='" + Email + '\'' +
-                ", gander='" + gander + '\'' +
+                ", gander='" + gender + '\'' +
                 ", birthdate=" + birthdate +
                 '}';
     }

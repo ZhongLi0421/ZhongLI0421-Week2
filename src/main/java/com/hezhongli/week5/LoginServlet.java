@@ -1,13 +1,12 @@
 package com.hezhongli.week5;
 
-import com.hezhongli.dao.UserDAo;
+import com.hezhongli.dao.UserDao;
 import com.hezhongli.model.User;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.*;
 
 @WebServlet(name = "LoginServlet", value = "/login")
@@ -79,7 +78,7 @@ public class LoginServlet extends HttpServlet {
         }
 */
         //use dao and model
-        UserDAo userDAo = new UserDAo();
+        UserDao userDAo = new UserDao();
         try {
             User user = userDAo.findByUsernamePassword(con, username, password);
             //forward to jsp
